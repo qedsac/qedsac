@@ -504,8 +504,7 @@ Menu::Menu(QWidget *parent)
     // "Find" tool
     tmp = toolbar->addWidget(new QLabel("Find:"));
     QLineEdit *search_box = new QLineEdit("");
-    search_box->setMaximumSize(QSize(80, 16));
-    search_box->setMinimumSize(QSize(54, 16));
+    search_box->setFixedSize(QSize(80, 16));
     tmp = toolbar->addWidget(search_box);
     tmp = toolbar->addAction(QIcon(QPixmap(":/down.png")), "Next");
     connect(tmp, &QAction::triggered,
