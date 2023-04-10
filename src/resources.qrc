@@ -1,0 +1,83 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <!-- icons -->
+    <file alias="clock.png">icons/clock.png</file>
+    <file alias="discard.png">icons/discard.png</file>
+    <file alias="eddoc.png">icons/eddoc.png</file>
+    <file alias="edtut.png">icons/edtut.png</file>
+    <file alias="new.png">icons/new.png</file>
+    <file alias="open.png">icons/open.png</file>
+    <file alias="print.png">icons/print.png</file>
+    <file alias="save.png">icons/save.png</file>
+    <file alias="settings.png">icons/settings.png</file>
+    <file alias="tredo.png">icons/tredo.png</file>
+    <file alias="tundo.png">icons/tundo.png</file>
+    <file alias="linefeed.png">icons/linefeed.png</file>
+    <file alias="up.png">icons/up.png</file>
+    <file alias="down.png">icons/down.png</file>
+    <file alias="logo.png">icons/logo.png</file>
+    <file alias="tape.png">icons/tape.png</file>
+
+	<!-- uparrow cursor from Lazarus -->
+	<file alias="uparrow.png">icons/arrow_up_200.png</file>
+
+    <!-- images -->
+    <file alias="Ed83.png">images/Ed83.png</file>
+    <file alias="Ed100.png">images/Ed100.png</file>
+    <file alias="Ed133.png">images/Ed133.png</file>
+    <file alias="Ed150.png">images/Ed150.png</file>
+    <file alias="Ed200.png">images/Ed200.png</file>
+    <file alias="about-pic.png">images/about-pic.png</file>
+    <file alias="splash.png">images/splash.png</file>
+
+    <!-- sounds -->
+    <file alias="Beep.wav">sounds/Beep.wav</file>
+    <file alias="Bell.wav">sounds/Bell.wav</file>
+    <file alias="C_return.wav">sounds/C_return.wav</file>
+    <file alias="Dial0.wav">sounds/Dial0.wav</file>
+    <file alias="Dial1.wav">sounds/Dial1.wav</file>
+    <file alias="Dial2.wav">sounds/Dial2.wav</file>
+    <file alias="Dial3.wav">sounds/Dial3.wav</file>
+    <file alias="Dial4.wav">sounds/Dial4.wav</file>
+    <file alias="Dial5.wav">sounds/Dial5.wav</file>
+    <file alias="Dial6.wav">sounds/Dial6.wav</file>
+    <file alias="Dial7.wav">sounds/Dial7.wav</file>
+    <file alias="Dial8.wav">sounds/Dial8.wav</file>
+    <file alias="Dial9.wav">sounds/Dial9.wav</file>
+    <file alias="Linefeed.wav">sounds/Linefeed.wav</file>
+    <file alias="Print.wav">sounds/Print.wav</file>
+    <file alias="Space.wav">sounds/Space.wav</file>
+    <file alias="TeleprinterBell.wav">sounds/TeleprinterBell.wav</file>
+
+    <!-- fonts -->
+    <file alias="dial-digits.ttf">fonts/dial-digits.ttf</file>
+
+	<!-- library tapes -->
+	<file>tapes/catalog.ini</file>
+	<file>tapes/C10.txt</file>
+	<file>tapes/C7.txt</file>
+	<file>tapes/D6.txt</file>
+	<file>tapes/E2.txt</file>
+	<file>tapes/M20.txt</file>
+	<file>tapes/M3.txt</file>
+	<file>tapes/P14.txt</file>
+	<file>tapes/P1.txt</file>
+	<file>tapes/P6.txt</file>
+	<file>tapes/P7.txt</file>
+	<file>tapes/R1.txt</file>
+	<file>tapes/R2.txt</file>
+	<file>tapes/R3.txt</file>
+	<file>tapes/R4.txt</file>
+	<file>tapes/R9.txt</file>
+	<file>tapes/S2.txt</file>
+	<file>tapes/S3.txt</file>
+	<file>tapes/T1.txt</file>
+	<file>tapes/PM0.txt</file>
+	<file>tapes/PM1.txt</file>
+	<file>tapes/PM2.txt</file>
+	<file>tapes/PM3.txt</file>
+	<file>tapes/PM4.txt</file>
+	<file>tapes/PM5.txt</file>
+
+</qresource>
+</RCC>

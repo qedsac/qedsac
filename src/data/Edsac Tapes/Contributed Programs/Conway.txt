@@ -1,0 +1,450 @@
+[Conways Life]
+[Ian Gillman 1998]
+
+[Pattern]
+T96K
+F  555 D
+Q  520 D
+P 1105 F
+W   80 F
+Q  130 D
+T  128 D
+P   69 F
+J   68 F
+X  640 F
+R  136 F
+I   20 F
+P   20 F
+F      D
+Q  520 D
+P 1040 F
+W   80 F
+Q    2 D
+T  128 F
+I    1 F
+J    4 F
+X  130 F
+R  520 F
+I 1028 F
+I   16 F
+Q  512 D
+P  520 D
+P 1105 F
+W   16 F
+Q  128 D
+T      D
+I      F
+W    4 F
+X      F
+T      F
+
+
+[Copy Screen]
+T45K  [H Parameter]
+P153F
+
+T128K
+GK
+A57F  [Form return address]
+T24@  [Plant Link]
+A3H   [Reset counter]
+TH    [             ]
+A1H   [Get FROM offset]
+A4H   [Add instruction blank]
+T11@  [Write instruction]
+A2H   [Get TO offset]
+A5H   [Add instruction blank]
+T12@  [Write instruction]
+
+T58F  [Clear acc]
+AF    [Target instruction]
+TF    [Target instruction]
+A11@  [Get instruction]
+S6H   [Decrement by 4]
+T11@  [Store instruction]
+A12@  [Get instruction]
+S6H   [Decrement by 4]
+T12@  [Store instruction]
+AH    [Get counter]
+S43F  [Decrement counter]
+UH    [Store counter]
+E10@  [Loop back]
+
+T58F  [Clear acc]
+EF    [Space for link]
+
+[Variables]
+PF    [Counter]
+PF    [FROM Offset]
+PF    [TO Offset]
+P7D   [Counter Max]
+AD    [Instruction blank]
+TD    [Instruction blank]
+P2F   [Four]
+
+
+
+
+
+[Check for bit]
+T45K [H Parameter]
+P182F
+
+T160K
+GK
+A57F  [Form return address]
+U18@  [Plant Link]
+T20@  [Plant Link]
+
+T58D  [Clear acc]
+A#H   [Load bitmask]
+S4#H  [Decrement bitmask]
+G19@  [If it is -ve then exit]
+
+T58D  [Clear acc]
+A2H   [Load location]
+LD    [Shift location]
+A3H   [Add instruction]
+T13@  [Store new instruction]
+H#H   [Load bitmask]
+CD    [Instruction blank]
+S#H   [Subtract bitmask]
+G19@  [If acc is negative]
+T58F  [Else clear acc]
+A43F  [Put 1 in acc]
+EF    [Space for link]
+T58F  [Clear acc]
+EF    [Space for link]
+XF    [Spacer]
+
+[Variables]
+[Must be word aligned]
+PF    [Mask lower word]
+PF    [Mask upper word]
+PF    [Location]
+CD    [Instruction blank]
+PD    [One - double word]
+PF    [                 ]
+
+
+
+
+
+
+[Number of Neighbours]
+T46K  [N Parameter]
+P182F [Location of working bits]
+T45K  [H Parameter]
+P264F
+T192K
+GK
+A57F  [Form return address]
+T71@  [Plant Link]
+T2H   [Clear neighbours]
+A56F  [Load two]
+T5H   [Set counter]
+
+A3H   [Load location offset]
+A4H   [Load base location]
+T2N   [Store working location]
+
+[If location >= 30]
+A3H   [Load location offset]
+S6H   [Subtract 30]
+G15@  [Else]
+T58F  [Clear acc]
+A5H   [Load counter]
+S43F  [Decrement counter]
+T5H   [Save counter]
+
+[If location <= 0]
+T58F  [Clear acc]
+A3H   [Get location offset]
+S43F  [Decrement it]
+G24@  [If we are -ve]
+T58F  [Else Clear acc]
+A2N   [Get working location]
+S56F  [Decrement by two]
+T2N   [Store it]
+E28@  [Else]
+T58F  [Clear acc]
+A5H   [Load counter]
+S43F  [Decrement counter]
+T5H   [Store counter]
+
+[To the right]
+T58D  [Clear acc]
+A#H   [Load bitmask]
+RD    [Shift to right]
+T#N   [Store it in working location]
+A32@  [Load return address]
+G160F [Find out bit value]
+A2H   [Add to neighbours]
+T2H   [Store neighbours]
+
+[In the middle]
+T58D  [Clear acc]
+A#H   [Load bitmask]
+T#N   [Store it in working location]
+A39@  [Load return address]
+G160F [Find out bit value]
+A2H   [Add to neighbours]
+T2H   [Store neighbours]
+
+[To the left]
+T58D  [Clear acc]
+A#H   [Load bitmask]
+LD    [Shift to left]
+T#N   [Store it in working location]
+A47@  [Load return address]
+G160F [Find out bit value]
+A2H   [Get neighbours]
+T2H   [Store neighbours]
+
+[Check counter]
+T58F  [Clear acc]
+A5H   [Load counter]
+S43F  [Decrement counter]
+G60@  [Break out of loop]
+T5H   [Store counter]
+A2N   [Get working location]
+A56F  [Location +=2]
+T2N   [Store location]
+E28@  [Loop back]
+
+[Make sure that we have not]
+[counted ourselves]
+T58F  [Clear acc]
+A3H   [Get location offset]
+A4H   [Get base location]
+T2N   [Store working location]
+A#H   [Load bitmask]
+T#N   [Store it in working location]
+A66@  [Load return address]
+G160F [Find out bit value]
+T5H   [Store bit value]
+A2H   [Get neighbours]
+S5H   [Subtract bit value]
+EF    [Space for link]
+
+[Variables]
+PF    [Bitmask]
+PF    [       ]
+PF    [Neighbours]
+PF    [Location offset]
+PF    [Base location]
+P1D   [Counter]
+P15F  [Thirty]
+
+
+
+
+
+
+[Alive or dead]
+T64K
+GK
+A57F  [Form return address]
+U13@  [Plant Link]
+U16@  [Plant Link]
+T20@  [Plant Link]
+A4@   [Store return address]
+G192F [Find neighbours]
+
+S56F  [Answer -= 2]
+G12@  [If -ve then 0 or 1 - die]
+S43F  [Decrement answer]
+G14@  [If -ve then 2 - no change]
+S43F  [Decrement answer]
+G17@  [If -ve then 3 - live]
+      [Else die]
+T58F  [Clear acc]
+EF    [Space for link]
+T58F  [Clear acc]
+A43F  [Set acc to one]
+EF    [Space for link]
+T58F  [Clear acc]
+A43F  [Set acc to one]
+A43F  [Set acc to two]
+EF    [Space for link]
+
+
+
+
+
+[OR Gate]
+T45K [H parameter]
+P304F
+T288K
+GK
+A57F [Form return address]
+T15@ [Plant link]
+T58D [Clear acc]
+S4#H [Get -1]
+S#H  [NOT a]
+T#H  [Store result]
+S4#H [Get -1]
+S2#H [NOT b]
+T2#H [Store result]
+H#H  [Load a into mult]
+C2#H [a AND b]
+T#H  [Store result]
+S4#H [Get -1]
+S#H  [NOT (a AND b)]
+T#H  [Store result]
+EF   [Space for link]
+[Variables]
+PF   [Number 1]
+PF   [        ]
+PF   [Number 2]
+PF   [        ]
+PD   [One - double word]
+PF   [                 ]
+
+
+
+[M3]
+PFGKIFAFRDLFUFOFE@A6FG@E8FEZPF
+@&*
+!!!!!!!!!!!!CONWAYS!LIFE@&
+!!!!!!!!!!IAN!GILLMAN!#1998*@&
+!!!!!SWITCH!CRT!TO!LONG!TANK!#0*@&
+!!!!!!!!!!!!PLEASE!WAIT@&
+!!!!!!!EACH!GENERATION!TAKES@&
+!!!!!!!ABOUT!#5*!EDSAC!MINUTES@&
+..PZ
+
+
+
+
+[Variables - Main]
+T320K
+PF   [Base location]
+P48F [Working screen location]
+P15F [Thirty]
+PF   [Current state]
+PF   [New state]
+AD   [Instruction blank]
+TD   [Instruction blank]
+P2F  [Four]
+PD   [One - double word]
+PF   [                 ]
+
+
+[Main]
+T45K  [H Parameter]
+P320F
+T46K  [N Parameter]
+P264F [Location of working bits]
+T47K  [M Parameter]
+P153F [Location of copy screen]
+T49K  [L Parameter]
+P304F [OR parameters]
+
+T48K  [& Parameter]
+P365F [Main code start]
+
+T352K
+GK
+A2F   [Load acc with location 2]
+T56F  [Store in location 56]
+A3F   [Load acc with location 3]
+T57F  [Store in location 57]
+
+AH    [Get base location]
+U4N   [Store base location]
+
+A2H   [Add thirty to base location]
+LD    [Shift left]
+T2M   [Store base location]
+A1H   [Get working location]
+A2H   [Add thirty]
+LD    [Shift left]
+T1M   [Store working location]
+
+T58F  [Clear acc]
+A1&   [Copy pattern to screen]
+G128F
+
+T58F  [Clear acc]
+A2H   [Load thirty]
+T3N   [Reset location offset]
+
+T58D  [Clear acc]
+A8#H  [Load base bitmask]
+T#N   [Set bitmask]
+
+T58D  [Clear acc]
+A1H   [Get working location]
+A3N   [Add location offset]
+LD    [Shift left]
+A5H   [Add instruction blank]
+U32&  [Store instruction]
+T44&  [Store instruction]
+
+A1H   [Get working location]
+A3N   [Add location offset]
+LD    [Shift left]
+A6H   [Add instruction blank]
+U38&  [Store instruction]
+T48&  [Store instruction]
+
+T58D  [Clear acc]
+A23&  [Live or die]
+G64F
+
+S43F  [Decrement state]
+G40&  [If -ve then die]
+S43F  [Decrement state]
+G49&  [no change]
+
+[Live]
+T58D  [Clear acc]
+A#N   [Load bitmask]
+T#L   [Store bitmask]
+AD    [Space for load instruction]
+T2#L  [Store location]
+A34&  [Load return address]
+G288F [a OR b]
+T58D  [Clear acc]
+A#L   [Get answer]
+TD    [Space for store instruction]
+E49&  [Continue]
+
+[Die]
+T58D  [Clear acc]
+S8#H  [Get -1]
+S#N   [Subtract bitmask]
+T#L   [Store result]
+AD    [Space for load instruction]
+T2#L  [Store location]
+H#L   [Put location in mult]
+C2#L  [a AND b]
+TD    [Space for store instruction]
+[46]
+
+T58D  [Clear acc]
+A#N   [Load bitmask]
+LD    [Shift left]
+U#N   [Store bitmask]
+S8#H  [Decrement bitmask]
+E22&  [Do not reset bitmask]
+
+T58D  [Clear acc]
+A32&  [Get load instruction]
+S7H   [Subtract four]
+U32&  [Store instruction]
+T44&  [Store instruction]
+A38&  [Get save instruction]
+S7H   [Subtract four]
+U38&  [Store instruction]
+T48&  [Store instruction]
+
+A3N   [Load offset]
+S56F  [Decrement by two]
+U3N   [Store offset]
+E6&   [Do not reset location offset]
+
+G&    [Reset location offset]
+
+EZPF

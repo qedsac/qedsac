@@ -1,0 +1,56 @@
+[Cubes]
+
+[When the program stops, 
+press reset. It will then 
+print a table of the cubes
+of 1 to 10]
+
+..PK
+T56K
+[P6]
+GKA3FT25@H29@VFT4DA3@TFH30@S6@T1F
+V4DU4DAFG26@TFTFO5FA4DF4FS4F
+L4FT4DA1FS3@G9@EFSFO31@E20@J995FJF!F
+..PZ
+[Cubes Master]
+GK
+ZF
+O34@
+O35@
+O36@
+TF
+A27@
+TF
+A7@
+G56F
+T27@
+A28@
+A31@
+T28@
+S28@
+T30@
+A29@
+A32@
+U29@
+A27@
+T27@
+A30@
+A31@
+G14@
+A33@
+S28@
+E2@
+ZF
+PD
+PD
+PD
+PF
+PD
+P1F
+P5F
+#F
+@F
+&F
+EZPF
+
+

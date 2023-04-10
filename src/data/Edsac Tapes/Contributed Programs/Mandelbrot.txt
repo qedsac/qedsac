@@ -1,0 +1,329 @@
+[                Edsac Mandelbrot Plotter
+                            by 
+                      Jonathan Hunt
+                      January 1998
+
+The Mandelbrot set is a set of complex numbers.  A complex
+number, C, is in the Mandelbrot set if, after applying
+many iterations of the formula Z = Z*Z + C , the magnitude
+of Z is less than 2.
+
+We can get a picture of what the Mandelbrot set looks like
+by drawing a graph where the x axis represents the real
+part of the complex number and the y axis represents the
+imaginary part.  For each position on the graph, we test
+whether or not it satisfies the iteration test described
+above, and if it does we colour that point black.  If it
+doesn't, we leave it white.  If we plot thousands of
+points in this way, we build up an image of the Mandelbrot
+set.
+
+The Edsac Mandelbrot plotter does this job for us.  It
+uses the dots in Long tank 0 to represent the points on
+the graph, and builds up the Mandelbrot image colouring
+points inside the Mandelbrot set black, and points outside
+the set white.
+
+The initial ranges for the two axis can be changed by
+modifying xorig, yorig, xstep and ystep at locations
+262, 264, 266 and 268 respectively.  In addition to this
+after each frame has been completed, you can 'zoom' into
+a particular part of the image by dialling the appropriate
+number (the program prints a key on the teleprinter so
+you know which number corresponds to which region).]
+
+
+T64K
+[M3]
+PFGKIFAFRDLFUFOFE@A6FG@E8FEZPF           [ Print loading ]
+@&@&!!!!!!!*MANDELBROT!PLOTTER!BY        [ message using ]
+@&!!!!!!!!!!J#M*A#M*HUNT#N!#1998      [ subroutine    ]
+@&@&*!!!!!!LOADING#N!*PLEASE!WAIT#MMM    [            M3 ]
+..PK
+
+T57K
+GK
+T00DT02DT04DT06D        [ Clear    ]
+T08DT10DT12DT14D        [   Long   ]
+T16DT18DT20DT22D        [     Tank ]
+T24DT26DT28DT30D        [       0  ]
+
+[073] A304F    [ \                              ]
+[074] U126F    [  \                             ]
+[075] T133F    [   \                            ]
+[076] A318F    [    > Reset Self modifying code ]
+[077] T128F    [   /                            ]
+[078] A319F    [  /                             ]
+[079] T135F    [ /                              ]
+
+[080] A264D    [ \_ b = yorig ]
+[081] T260D    [ /            ]
+[082] A289F    [ \_ k = 15 ]
+[083] T257F    [ /         ]
+
+[084] T320D    [ (clear acc)  ]
+[085] A262D    [ \_ a = xorig ]
+[086] T258D    [ /            ]
+[087] A290F    [ \_ j = 34 ]
+[088] U256F    [ /         ]
+
+[089] T320D    [ (clear acc) ]
+[090] U270D    [ x = 0 ]
+[091] U272D    [ y = 0 ]
+[092] U274D    [ z = 0 ]
+[093] U280F    [ n = 0 ]
+
+[094] H270D    [ \                ]
+[095] V270D    [  \_ xsqr = x * x ]
+[096] L16F     [  /  <- (<<6)     ]
+[097] T276D    [ /                ]
+[098] H272D    [ \                ]
+[099] V272D    [  \_ ysqr = y * y ]
+[100] L16F     [  /  <- (<<6)     ]
+[101] U278D    [ /                ]
+[102] A276D    [ \_ z = xsqr + ysqr ]
+[103] T274D    [ /                  ]
+[104] H270D    [ \                     ]
+[105] V272D    [  \                    ]
+[106] L32F     [   > y = 2 * x * y + b ]
+[107] A260D    [  /                    ]
+[108] T272D    [ /                     ]
+[109] A276D    [ \                       ]
+[110] S278D    [  \_ x = xsqr - ysqr + a ]
+[111] A258D    [  /                      ]
+[112] T270D    [ /                       ]
+[113] A280F    [ \            ]
+[114] A288F    [  > n = n + 1 ]
+[115] T280F    [ /            ]
+
+[116] A274D    [ \                         ]
+[117] S292D    [  > if z > 4 then goto 125 ]
+[118] E125F    [ /                         ]
+
+[119] T320D    [ (clear acc) ]
+[120] A280F    [ \                          ]
+[121] S291F    [  > if n > 32 then goto 125 ]
+[122] E125F    [ /                          ]
+
+[123] T320D    [ \_ goto 094 ]
+[124] E094F    [ /           ]
+
+[125] T320D    [ (clear acc) ]
+[126] A0D      [ \                   ] [ <- SMC point ]
+[127] LD       [  > !ptr = !ptr << 1 ]
+[128] T0D      [ /                   ] [ <- SMC point ]
+
+[129] A280F    [ \                          ]
+[130] S291F    [  > if n > 32 then goto 136 ]
+[131] E136F    [ /                          ]
+
+[132] T320D    [ (clear acc) ]
+[133] A0D      [ \                   ] [ <- SMC point ]
+[134] A294D    [  > !ptr = !ptr + 1  ]
+[135] U0D      [ /                   ] [ <- SMC point ]
+
+[136] T320D    [ (clear acc) ]
+[137] A258D    [ \                 ]
+[138] A266D    [  > a = a + xstep  ]
+[139] T258D    [ /                 ]
+[140] A256F    [ \            ]
+[141] S288F    [  > j = j - 1 ]
+[142] U256F    [ /            ]
+
+[143] E089F    [ if j >= 0 then goto 089 ]
+
+[144] T320D    [ (clear acc) ]
+[145] A260D    [ \                 ]
+[146] A268D    [  > b = b + ystep  ]
+[147] T260D    [ /                 ]
+
+[148] A126F    [ \                                ]
+[149] A296F    [  \                               ]
+[150] U126F    [   \                              ]
+[151] T133F    [    \_ ptr = ptr + 2  (Using SMC) ]
+[152] A128F    [    /                             ]
+[153] A296F    [   /                              ]
+[154] U128F    [  /                               ]
+[155] T135F    [ /                                ]
+
+[156] A257F    [ \            ]
+[157] S288F    [  > k = k - 1 ]
+[158] U257F    [ /            ]
+
+[159] E084F    [ if k >= 0 then goto 084 ]
+
+[160] O298F O299F O298F O299F O297F [ Print out zoom ]
+      O300F O301F O301F O301F O301F [ area diagram   ]
+      O301F O301F O301F O300F O298F
+      O299F O302F O303F O311F O303F
+      O312F O303F O313F O303F O302F
+      O298F O299F O302F O303F O308F
+      O303F O309F O303F O310F O303F
+      O302F O303F O317F O314F O312F
+      O301F O315F O303F O301F O308F
+      O307F O301F O303F O309F O313F
+      O303F O300F O313F O313F O316F
+      O298F O299F O297F O302F O303F
+      O305F O303F O306F O303F O307F
+      O303F O302F O298F O299F O300F
+      O301F O301F O301F O301F O301F
+      O301F O301F O300F O298F O299F
+
+[240] T320D    [ (clear acc) ]
+[241] ZF       [ Stop and wait for input ]
+[242] U281F    [ Store input ]
+[243] S288F    [ \_ if no input then goto 240 to ]
+[244] G240F    [ /  re-read input                ]
+[245] E328F    [ goto zoom routine ]
+
+T262K    [ Initialise xorig, yorig, xstep, and ystep ]
+PF       [ xorig = -1.75 (>>6) =                 ]
+V1152F   [                    %11111100100000000 ]
+PF       [ yorig = -1 (>>6) =                    ]
+V1536F   [                    %11111110000000000 ]
+PF       [ xstep = 17/256 (>>6) =                ]
+P34F     [                    %00000000001000100 ]
+PF       [ ystep = 1/8 (>>6) =                   ]
+P64F     [                    %00000000010000000 ]
+
+T288K    [ Start constants at location 288 ]
+[288] PD       [ Short integer  1 ]
+[289] P7D      [ Short integer 15 ]
+[290] P17F     [ Short integer 34 ]
+[291] P16F     [ Short integer 32 ]
+[292] PF       [ \_ Fixed point 4 ]
+[   ] QF       [ /                ]
+[294] PD       [ \_ LSB set only  ]
+[   ] PF       [ /                ]
+[296] P2F      [ Short integer  4 ]
+[297] #F       [ Number shift     ]
+[298] @F       [ Carriage Return  ]
+[299] &F       [ Line Feed        ]
+[300] ZF       [ Char Z / +       ]
+[301] AF       [ Char A / -       ]
+[302] CF       [ Char C / :       ]
+[303] !F       [ Char <Space>     ]
+[304] A0D      [ SMC constant ]
+[305] QF       [ Char Q / 1       ]
+[306] WF       [ Char W / 2       ]
+[307] EF       [ Char E / 3       ]
+[308] RF       [ Char R / 4       ]
+[309] TF       [ Char T / 5       ]
+[310] YF       [ Char Y / 6       ]
+[311] UF       [ Char U / 7       ]
+[312] IF       [ Char I / 8       ]
+[313] OF       [ Char O / 9       ]
+[314] DF       [ Char D / ;       ]
+[315] LF       [ Char L / )       ]
+[316] MF       [ Char M / .       ]
+[317] *F       [ Letter shift     ]
+[318] T0D      [ SMC constant ]
+[319] U0D      [ SMC constant ]
+
+T328K    [ Zoom routine ]
+[328] T320D    [ (clear acc) ]
+[329] A281F    [ load input into acc ]
+[330] RD       [ Divide by two to get actual value ]
+[331] S288F    [ Subtract 1 to get range 0-8 ]
+[332] S288F    [ \_ If input was 1 goto 414 ]
+[333] G414F    [ /                          ]
+[334] S288F    [ \_ If input was 2 goto 350 ]
+[335] G350F    [ /                          ]
+[336] S288F    [ \_ If input was 3 goto 356 ]
+[337] G356F    [ /                          ]
+[338] S288F    [ \_ If input was 4 goto 362 ]
+[339] G362F    [ /                          ]
+[340] S288F    [ \_ If input was 5 goto 368 ]
+[341] G368F    [ /                          ]
+[342] S288F    [ \_ If input was 6 goto 378 ]
+[343] G378F    [ /                          ]
+[344] S288F    [ \_ If input was 7 goto 388 ]
+[345] G388F    [ /                          ]
+[346] S288F    [ \_ If input was 8 goto 394 ]
+[347] G394F    [ /                          ]
+[348] S288F    [ \_ If input was 9 goto 404 ]
+[349] G404F    [ /                          ]
+
+[350] T320D    [ Zoom area 2 ]
+[351] A266D    [ \                             ]
+[352] L2F      [  \_ xorig = xorig + xstep * 8 ]
+[353] A262D    [  /                            ]
+[354] T262D    [ /                             ]
+[355] E414F    [ goto 414 ]
+
+[356] T320D    [ Zoom area 3 ]
+[357] A266D    [ \                              ]
+[358] L4F      [  \_ xorig = xorig + xstep * 16 ]
+[359] A262D    [  /                             ]
+[360] T262D    [ /                              ]
+[361] E414F    [ goto 414 ]
+
+[362] T320D    [ Zoom area 4 ]
+[363] A268D    [ \                             ]
+[364] L1F      [  \_ yorig = yorig + ystep * 4 ]
+[365] A264D    [  /                            ]
+[366] T264D    [ /                             ]
+[367] E414F    [ goto 414 ]
+
+[368] T320D    [ Zoom area 5 ]
+[369] A266D    [ \                             ]
+[370] L2F      [  \_ xorig = xorig + xstep * 8 ]
+[371] A262D    [  /                            ]
+[372] T262D    [ /                             ]
+[373] A268D    [ \                             ]
+[374] L1F      [  \_ yorig = yorig + ystep * 4 ]
+[375] A264D    [  /                            ]
+[376] T264D    [ /                             ]
+[377] E414F    [ goto 414 ]
+
+[378] T320D    [ Zoom area 6 ]
+[379] A266D    [ \                              ]
+[380] L4F      [  \_ xorig = xorig + xstep * 16 ]
+[381] A262D    [  /                             ]
+[382] T262D    [ /                              ]
+[383] A268D    [ \                             ]
+[384] L1F      [  \_ yorig = yorig + ystep * 4 ]
+[385] A264D    [  /                            ]
+[386] T264D    [ /                             ]
+[387] E414F    [ goto 414 ]
+
+[388] T320D    [ Zoom area 7 ]
+[389] A268D    [ \                             ]
+[390] L2F      [  \_ yorig = yorig + ystep * 8 ]
+[391] A264D    [  /                            ]
+[392] T264D    [ /                             ]
+[393] E414F    [ goto 414 ]
+
+[394] T320D    [ Zoom area 8 ]
+[395] A266D    [ \                             ]
+[396] L2F      [  \_ xorig = xorig + xstep * 8 ]
+[397] A262D    [  /                            ]
+[398] T262D    [ /                             ]
+[399] A268D    [ \                             ]
+[400] L2F      [  \_ yorig = yorig + ystep * 8 ]
+[401] A264D    [  /                            ]
+[402] T264D    [ /                             ]
+[403] E414F    [ goto 414 ]
+
+[404] T320D    [ Zoom area 9 ]
+[405] A266D    [ \                              ]
+[406] L4F      [  \_ xorig = xorig + xstep * 16 ]
+[407] A262D    [  /                             ]
+[408] T262D    [ /                              ]
+[409] A268D    [ \                             ]
+[410] L2F      [  \_ yorig = yorig + ystep * 8 ]
+[411] A264D    [  /                            ]
+[412] T264D    [ /                             ]
+[413] E414F    [ goto 414 ]
+
+[414] A266D    [ \                    ]
+[415] RD       [  > xstep = xstep / 2 ]
+[416] T266D    [ /                    ]
+[417] A268D    [ \                    ]
+[418] RD       [  > ystep = ystep / 2 ]
+[419] T268D    [ /                    ]
+[420] E073F    [ goto 073 to plot next frame ]
+
+EZPF
+
+

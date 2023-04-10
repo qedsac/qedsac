@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=VERSION
+Name=QEdsac
+Comment=The Edsac Simulator (Qt)
+Categories=History
+Icon=DATADIR/icons/desktop-icon.png
+Exec=BINARY
+Terminal=false
+Type=Application

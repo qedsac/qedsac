@@ -1,0 +1,82 @@
+This directory contains the "tape" files for the EDSAC's subroutine
+library and postmortem routines.  The subroutines are all from the
+standard EDSAC library, as described in Part II of WWG.  The postmortem
+routines are described in section 4.2 of the Tutorial Guide.
+
+As the simulator does not provide all of the routines available at
+Cambridge for the original machine, it is conceivable that more of
+these will be added at a future date.  To that end, we provide the
+following instructions on how to add, for example, the "tape" for
+subroutine "X99" in the category "Xtra", which already contains 3
+tapes:
+
+    1.  Add a file named "X99.txt" to this directory, and add a
+    corresponding entry in the "resources.qrc".
+
+    2.  Find the "Xtras" category in the "catalog.ini" file.  Change
+    the "num=3" line to "num=4".  Add the line
+
+        s4=X99 - Extra function #99
+
+    to the file.
+
+When you next build the simulator, the new subroutine will be
+available via both the "Library" menu and the "Subroutine Library"
+tabs.
+
+------------------------------------------------------------------------
+
+Complete Description of the "catalog.ini" File Format:
+
+-- The first line of the file must be "[Categories]".  This is followed
+by a "num=" line that specifies the number of category names that
+follow.
+
+-- Each category is represented by a line of the form "cn - name",
+where 'n' is the category number, and 'name' is the category name.
+The category numbers should be consecutive, starting with 1.
+
+-- Immediately after the "num=" line is a "default=cn" name, where
+'cn' is the category specifier as described in the next item.  This
+category will be the initially selected tab in the "Subroutine
+Library" window.
+
+-- For each category, a section follows, in order of category number,
+introduced by the category name in square brackets, followed by a
+"num=" line specifying the number of routines in that category.
+
+-- Each line specifying a routine begins with an 's' (for a subroutine
+that can be inserted into a program) or 'f' (for a file that can be
+loaded -- and run -- directly), followed by an item number and an
+equals sign ('=').  These are followed by the routine name, a hyphen
+('-') and a description of what the routine does.  The routine name
+consists of a category prefix and serial number as described in Part II
+of WWG.  As with category numbers, item numbers should be consecutive.
+Currently, the 'f' code is used only for postmortem routines.
+
+For all lines in this file, leading and trailing whitespace is ignored,
+and all internal whitespace is reduced to a single space.  Blank lines
+are ignored, as are "comment" lines, which begin with a '#'.
+
+The current implementation does not check that category numbers and
+item numbers within categories are consecutive, but this may change in
+future.  
+
+------------------------------------------------------------------------
+
+Minimal example catalog.ini file:
+
+      # Sample catalog.ini:
+    [Categories]
+    num=2
+    c1=Checking
+    c2=Division
+
+    [Checking]
+    num=2
+    s1=C7 - Check function letters
+    s2=C10 - Numerical check
+
+    [Division]
+    num=1
+    s1=D6 - Division

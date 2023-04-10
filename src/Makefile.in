@@ -1,0 +1,133 @@
+# @configure_input@
+.SUFFIXES: .cc .o .qrc
+
+# Package-specific substitution variables
+package = @PACKAGE_NAME@
+version = @PACKAGE_VERSION@
+tarname = @PACKAGE_TARNAME@
+distdir = $(tarname)-$(version)
+
+# OS stuff
+build = @build@
+build_cpu = @build_cpu@
+build_vendor = @build_vendor@
+build_os = @build_os@
+
+# Prefix-specific substitution variables
+prefix       = @prefix@
+exec_prefix  = @exec_prefix@
+bindir       = @bindir@
+datarootdir  = @datarootdir@
+datadir      = @datadir@/${tarname}
+docdir       = @datarootdir@/doc/${tarname}
+
+# Tool-specific substitution variables
+CC              = @CC@
+CXX             = @CXX@
+DEFS            = @DEFS@ -DDATA_DIR=\"${datadir}\" -DDOC_DIR=\"${docdir}\"
+LIBS            = @LIBS@ @QT_LIBS@
+CXXFLAGS        = @CXXFLAGS@ @QT_CFLAGS@
+CPPFLAGS        = @CPPFLAGS@
+INSTALL         = @INSTALL@
+INSTALL_DATA    = @INSTALL_DATA@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_SCRIPT  = @INSTALL_SCRIPT@
+
+RCC = @RCC@
+
+# VPATH-specific substitution variables
+srcdir       = @srcdir@
+VPATH        = @srcdir@
+
+IMAGES = $(srcdir)/images/splash.png $(srcdir)/images/about-pic.png \
+            $(srcdir)/images/Ed83.png $(srcdir)/images/Ed100.png    \
+            $(srcdir)/images/Ed133.png $(srcdir)/images/Ed150.png   \
+            $(srcdir)/images/Ed200.png
+ICONS = $(srcdir)/icons/clock.png $(srcdir)/icons/discard.png       \
+            $(srcdir)/icons/down.png $(srcdir)/icons/eddoc.png      \
+            $(srcdir)/icons/edtut.png $(srcdir)/icons/linefeed.png  \
+            $(srcdir)/icons/logo.png $(srcdir)/icons/new.png        \
+            $(srcdir)/icons/open.png $(srcdir)/icons/print.png      \
+            $(srcdir)/icons/save.png $(srcdir)/icons/settings.png   \
+            $(srcdir)/icons/tredo.png $(srcdir)/icons/tundo.png     \
+            $(srcdir)/icons/up.png $(srcdir)/icons/tape.png
+SOUNDS = $(srcdir)/sounds/Beep.wav \
+    $(srcdir)/sounds/Bell.wav $(srcdir)/sounds/clock-tick.wav       \
+    $(srcdir)/sounds/C_return.wav $(srcdir)/sounds/Dial.wav         \
+    $(srcdir)/sounds/Linefeed.wav $(srcdir)/sounds/Print.wav        \
+    $(srcdir)/sounds/Space.wav $(srcdir)/sounds/TeleprinterBell.wav
+FONTS  = $(srcdir)/fonts/dial-digits.ttf
+CLASSES = $(srcdir)/edsac.o $(srcdir)/display.o $(srcdir)/editor.o  \
+        $(srcdir)/menu.o $(srcdir)/settings.o $(srcdir)/tank.o      \
+        $(srcdir)/tube.o $(srcdir)/about.o $(srcdir)/options.o      \
+        $(srcdir)/layout.o $(srcdir)/clock.o $(srcdir)/input.o      \
+        $(srcdir)/output.o $(srcdir)/sound.o $(srcdir)/light.o      \
+		$(srcdir)/dial.o
+
+OBJS = $(srcdir)/main.o $(srcdir)/resources.o $(CLASSES)
+
+PGM = $(tarname)
+
+.cc.o:
+	$(CXX) -c $(CXXFLAGS) $(DEFS) $(CPPFLAGS) -I. -I$(srcdir) -I.. \
+		-o $@ $<
+
+.qrc.cc:
+	$(RCC) $< > $@
+
+all: $(PGM)
+
+# all class def'n files have corresponding .h's
+$(CLASSES): %.o: %.h
+
+about.o:                                           ../config.h
+menu.o:                                            about.h
+$(CLASSES):                                        attributes.h
+display.o edsac.o:                                 clock.h
+display.o edsac.o output.o:                        debug.h
+display.o:                                         dial.h
+editor.o edsac.o menu.o options.o tube.o:          display.h
+display.o menu.o tube.o:                           edsac.h
+input.o menu.o options.o:                          editor.h
+dial.o display.o editor.o edsac.o input.o menu.o:  error.h
+edsac.o:                                           input.h
+clock.o display.o tube.o:                          layout.h
+display.o:                                         light.h
+display.o editor.o main.o output.o tube.o:         menu.h
+menu.o:                                            options.h
+display.o edsac.o:                                 output.h
+$(CLASSES):                                        settings.h
+display.o edsac.o output.o:                        sound.h
+display.o edsac.o menu.o tube.o:                   tank.h
+display.o:                                         tube.h
+
+$(PGM): $(OBJS)
+	$(CXX) -o $@ $(OBJS) $(LIBS)
+
+resources.cc: $(IMAGES) $(ICONS) $(SOUNDS) $(FONTS)  \
+                    $(srcdir)/tapes/catalog.ini
+
+clean:
+	-rm -f $(PGM) *.o >/dev/null 2>&1
+
+install:    all
+	$(INSTALL) -d $(DESTDIR)$(bindir)
+	$(INSTALL_PROGRAM) -m 0755 $(PGM) $(DESTDIR)$(bindir)
+	$(INSTALL) -d $(DESTDIR)$(datadir)/icons
+	$(INSTALL_DATA) icons/desktop-icon.png $(DESTDIR)$(datadir)/icons
+	(cd data; tar cf - .) | (cd $(DESTDIR)$(datadir); tar xf -)
+	$(INSTALL) -d $(DESTDIR)$(docdir)
+	$(INSTALL_DATA) doc/* $(DESTDIR)$(docdir)
+
+uninstall:
+	-rm -f $(DESTDIR)$(bindir)/$(PGM) >/dev/null 2>&1
+	-rm -fr $(DESTDIR)$(datadir) >/dev/null 2>&1
+	-rm -fr $(DESTDIR)$(docdir)
+
+Makefile: Makefile.in ../config.status
+	cd .. && ./config.status src/$@
+
+../config.status: ../configure
+	cd .. && ./config.status --recheck
+
+.PHONY: all clean check install uninstall
