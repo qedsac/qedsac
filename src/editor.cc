@@ -135,7 +135,7 @@ void Edit_Window::open_file(const QString& filename)
         }
 
         // add file to Open Recent menu
-		menu->adjust_recent(filename);
+        menu->adjust_recent(filename);
     }
 }
 

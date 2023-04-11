@@ -23,19 +23,19 @@ Display_Tube::Display_Tube(Tank *t, unsigned nlines, unsigned nbits,
     : QWidget(parent), data(t), num_lines(nlines), num_bits(nbits),
       is_short(is_shrt), label(lbl), hint_flags(h)
 {
-	if (uparrow_cursor == nullptr) {	// initialize cursor
-		//uparrow_curror = new QCursor(Qt::UpArrowCursor);
-		// the following looks better
-		QPixmap p(":/uparrow.png");
-		uparrow_cursor = new QCursor(p, p.width()/2, 0);
-	}
+    if (uparrow_cursor == nullptr) {    // initialize cursor
+        //uparrow_curror = new QCursor(Qt::UpArrowCursor);
+        // the following looks better
+        QPixmap p(":/uparrow.png");
+        uparrow_cursor = new QCursor(p, p.width()/2, 0);
+    }
 }
 
 // set specified long tank to be shown in display window
 // (meaningless for short tank display tubes)
 void Display_Tube::set_tank(int i)
 {
-	if (is_short) { return; }      // (defensive programming)
+    if (is_short) { return; }      // (defensive programming)
     data = edsac->store_tank(i);
     display->update();
 }
@@ -91,7 +91,7 @@ inline QString frac_to_str(WORD w, unsigned precision)
 void Display_Tube::enterEvent(QEvent *e)
 {
     if (Settings::hints()) {
-		setCursor(*uparrow_cursor);
+        setCursor(*uparrow_cursor);
         if (is_short) {
             if (Settings::short_tanks()) {
                 WORD *p = data->end() - 1;
@@ -129,7 +129,7 @@ void Display_Tube::enterEvent(QEvent *e)
 void Display_Tube::leaveEvent(QEvent *e)
 {
     if (Settings::hints()) {
-		setCursor(Qt::ArrowCursor);
+        setCursor(Qt::ArrowCursor);
         setMouseTracking(false);
         menu->clear_hint();
     }

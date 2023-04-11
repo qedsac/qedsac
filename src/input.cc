@@ -61,11 +61,11 @@ char Tape_Reader::next_char()
 
     // convert next input character into appropriate perforator code
     QChar ch = *curr_pos++;
-	// check letter codes...
+    // check letter codes...
     int punch = LETTERS.indexOf(ch, 0, Settings::ignore_case()
                                            ? Qt::CaseInsensitive
                                            : Qt::CaseSensitive);
-	// then figure codes
+    // then figure codes
     if (punch < 0) { punch = FIGURES.indexOf(ch); }
     if (punch < 0) {    // invalid char
         Error::beep();

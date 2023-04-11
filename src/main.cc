@@ -37,8 +37,8 @@ int main(int argc, char *argv[])
     // original shows splash screen for 1.5 seconds; so do we
     QTimer::singleShot(1500, &splash, SLOT(close()));
 
-	// Menu constructor builds everything else
-	// ("menu" is global; declared in menu.h)
+    // Menu constructor builds everything else
+    // ("menu" is global; declared in menu.h)
     menu = new Menu();
     QTimer::singleShot(1500, menu, SLOT(show()));
 

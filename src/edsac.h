@@ -38,9 +38,9 @@ public:
 private:
     typedef void (Edsac::*EXEC_FUNC)(ADDR, bool);
 
-	// make sure long word address is even
+    // make sure long word address is even
     static void adjust_addr(ADDR& a, bool lflag)
-		{ a &= ~ADDR(lflag); }
+        { a &= ~ADDR(lflag); }
 
     void execute();
     void exec_order();

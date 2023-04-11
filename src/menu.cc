@@ -448,7 +448,7 @@ Menu::Menu(QWidget *parent)
     // left side
     // tool bar
     QToolBar *toolbar = new QToolBar();
-	toolbar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    toolbar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     QAction *tmp;
 
     // "New" tool

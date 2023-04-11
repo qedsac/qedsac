@@ -30,10 +30,10 @@ void Teleprinter::do_print(char c)
         insertPlainText(LITERAL_CHARS[c]);
         columns = (columns + 1) % 4;
         if (columns == 0) { insertPlainText("\n"); }
-		menu->enable(PRINT_OUTPUT, true);
-		menu->enable(SAVE_OUTPUT, true);
-		menu->enable(DISCARD_OUTPUT, true);
-		menu->enable(DISCARD_OUTPUT_TOOL, true);
+        menu->enable(PRINT_OUTPUT, true);
+        menu->enable(SAVE_OUTPUT, true);
+        menu->enable(DISCARD_OUTPUT, true);
+        menu->enable(DISCARD_OUTPUT_TOOL, true);
     } else {
         QChar qc = TRANSTAB[shift][c];
         if (qc.isLower()) {
