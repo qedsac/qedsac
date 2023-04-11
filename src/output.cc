@@ -12,6 +12,7 @@
 #include "sound.h"
 
 // translation table for EDSAC teleprinter characters
+// (lowercase for control chars)
 static const QString TRANSTAB[2] = {
     "PQWERTYUIOJf" "S"  "ZKlxFrD HNMnLXGABCV",      // letter shift
     "0123456789bf" "\"" "+(lx$r; £,.n)/#-?:=",      // figure shift
@@ -36,7 +37,7 @@ void Teleprinter::do_print(char c)
         menu->enable(DISCARD_OUTPUT_TOOL, true);
     } else {
         QChar qc = TRANSTAB[shift][c];
-        if (qc.isLower()) {
+        if (qc.isLower()) {     // control char
             int col = textCursor().columnNumber();
             switch (qc.toLatin1()) {
                 case 'f':       // figure shift

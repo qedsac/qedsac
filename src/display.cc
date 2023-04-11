@@ -212,9 +212,9 @@ void Display::set_output_font_size(int size)
 static inline int tube_line(ADDR a) { return (a & OFFSET_MASK) / 2; }
 
 // update display for specific line on specified tube
-// (address a only meaningful for STORE tube)
+// (a parameter only meaningful for STORE tube)
 // -- do nothing if short tanks not displayed
-//    or address is not currently displayed on STORE tube
+//    or address is not currently shown on STORE tube
 void Display::update_tube(Short_Tank st, ADDR a)
 {
     if (st == STORE) {

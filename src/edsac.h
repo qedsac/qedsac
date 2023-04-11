@@ -15,7 +15,7 @@ class Tape_Reader;
 class Edsac : public QObject
 {
 public:
-    // operations used for multiplication
+    // operations used when multiplying
     enum Op_Spec { ADDITION = 0, SUBTRACTION = 1 };
 
     Edsac();
@@ -38,7 +38,7 @@ public:
 private:
     typedef void (Edsac::*EXEC_FUNC)(ADDR, bool);
 
-    // make sure long word address is even
+    // ensure long word address is even
     static void adjust_addr(ADDR& a, bool lflag)
         { a &= ~ADDR(lflag); }
 
@@ -71,7 +71,7 @@ private:
     void no_op(ADDR a, bool lflag);             // X
     void roundoff(ADDR a, bool lflag);          // Y
     void halt(ADDR a, bool lflag);              // Z
-    void invalid(ADDR a, bool lflag);
+    void invalid(ADDR a, bool lflag);           // everything else
 
     // helper func for mult_add/mult_subtract
     void mult_op(ADDR a, bool lflag, Op_Spec op);

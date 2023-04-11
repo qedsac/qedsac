@@ -407,7 +407,7 @@ Edit_Window::Edit_Area::Edit_Area(QWidget *parent)
 Edit_Window::Edit_Area::~Edit_Area()
 {
     delete line_number_area;  // probably taken care of by Qt
-    //delete highlighter;   // causes crash when window closed!
+    //delete highlighter;     // causes crash when window closed!
 }
 
 // display the numbers corresponding to each visible line

@@ -71,11 +71,13 @@ private:
 
     // conditional menu items
     QAction *items[Conditional::NUM_ITEMS];
-        // stuff for "Open Recent" (under "File" menu)
+
+    // stuff for "Open Recent" (under "File" menu)
     QMenu *open_recent;
     static const int MAX_RECENT = 8;
     QList<QAction*> recent_files;
-        // stuff for "Window" menu
+
+    // stuff for "Window" menu
     QMenu *window_menu;
     QActionGroup *window_group;
     struct Window_Action { QString name; QAction *action; };

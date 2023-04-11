@@ -23,9 +23,9 @@ Display_Tube::Display_Tube(Tank *t, unsigned nlines, unsigned nbits,
     : QWidget(parent), data(t), num_lines(nlines), num_bits(nbits),
       is_short(is_shrt), label(lbl), hint_flags(h)
 {
-    if (uparrow_cursor == nullptr) {    // initialize cursor
+    if (uparrow_cursor == nullptr) {    // initialize cursor at first call
         //uparrow_curror = new QCursor(Qt::UpArrowCursor);
-        // the following looks better
+        // the following looks better:
         QPixmap p(":/uparrow.png");
         uparrow_cursor = new QCursor(p, p.width()/2, 0);
     }

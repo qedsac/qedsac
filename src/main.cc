@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     QSplashScreen splash(pixmap, Qt::WindowStaysOnTopHint);
     splash.show();
 
-    // original shows splash screen for 1.5 seconds; so do we
+    // original shows splash screen for 1.5 seconds; so we do likewise
     QTimer::singleShot(1500, &splash, SLOT(close()));
 
     // Menu constructor builds everything else

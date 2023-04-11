@@ -46,8 +46,8 @@ char Tape_Reader::next_char()
         //or *curr_pos == '[' or *curr_pos == ']'))
     {
         if (*curr_pos == '\n') { ++curr_line; }
-        else if (*curr_pos == '[') {    // start of comment
-            while (*(++curr_pos) != ']') {
+        else if (*curr_pos == '[') {        // start of comment
+            while (*(++curr_pos) != ']') {  // eat comment chars
                 if (*curr_pos == '\n') { ++curr_line; }
             }
         }

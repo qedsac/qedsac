@@ -38,9 +38,7 @@
 
 // document locations
 static const QString TUTORIAL_URL = "file://" DOC_DIR "/EdsacTG.pdf";
-    //"https://www.dcs.warwick.ac.uk/~edsac/Software/EdsacTG.pdf";
 static const QString EDSACDOC_URL = "file://" DOC_DIR "/EdsacDoc.pdf";
-    //"https://www.dcs.warwick.ac.uk/~edsac/Software/EdsacDoc.pdf";
 static const QString WWG1951_URL = "file://" DOC_DIR "/WWG1951.pdf";
 
 Menu *menu;     // single menu/toolbar window for simulator

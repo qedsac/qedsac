@@ -167,7 +167,7 @@ static const TICKS timings[] = {
     60,         // V -- multiply & add
 };
 
-// execute a single order
+// fetch & execute a single order
 void Edsac::exec_order()
 {
     // fetch order
@@ -201,7 +201,7 @@ void Edsac::exec_order()
     }
 }
 
-// punch code for given letter
+// return punch code for given letter
 inline char code(QChar c)
     { return QString("PQWERTYUIOJ#SZK*.F@D!HNM&LXGABCV").indexOf(c); }
 
@@ -331,7 +331,7 @@ void Edsac::load_multiplier(ADDR a, bool lflag)
 static void shift_left(WORD [], int);
 static void shift_right(WORD [], int);
 
-// shift the contents of tank t one bit to the left
+// shift the contents of tank t one bit to the left (logical)
 static inline void shift_left(Tank& t)
     { shift_left(t.begin(), t.end() - t.begin()); }
 
@@ -462,7 +462,7 @@ static int shift_length(WORD control)
     return result;
 }
 
-// perform a 1-bit arithmetic right shift on a register value with the
+// perform a single-bit arithmetic right shift on a register value with the
 // specified number of words
 static void shift_right(WORD reg[], int num_words)
 {
@@ -487,7 +487,7 @@ void Edsac::rshift(ADDR a, bool lflag)
     display->update_tube(ACC);
 }
 
-// perform a 1-bit left shift on a register value with the
+// perform a single-bit left shift on a register value with the
 // specified number of words
 static void shift_left(WORD reg[], int num_words)
 {

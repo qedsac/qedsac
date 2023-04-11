@@ -62,7 +62,7 @@ void Clock::paintEvent(QPaintEvent *e)
     dx = round(sh_radius*cos(t)); dy = round(sh_radius*sin(t));
     qp.drawLine(x, y, x+dx, y+dy);
 
-    // original has hours mod 60 instead of 100
+    // [original has hours mod 60 instead of 100]
     int hours = curr_time / TICKS_PER_SECOND / 60 / 60 % 100;
 
     // digital clock (if selected or hours >= 1)

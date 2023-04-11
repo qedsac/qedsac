@@ -18,7 +18,7 @@ Dial_Button::Dial_Button(char d, QWidget *parent)
 {
     setFont(dial_font);
     QPalette pal = palette();
-    pal.setColor(QPalette::Button, Qt::black);  // color when pressed
+    pal.setColor(QPalette::Button, Qt::black);
     pal.setColor(QPalette::ButtonText, Qt::lightGray);
     setPalette(pal);
     setFlat(true);

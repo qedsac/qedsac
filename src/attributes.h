@@ -4,8 +4,8 @@
 #ifndef ATTRIB_H
 #define ATTRIB_H
 
-#include <cstdint>      // for [u]int..._t
-#include <cmath>        // for log2()
+#include <cstdint>                 // for [u]int..._t
+#include <cmath>                   // for log2()
 
 typedef uint32_t TICKS;            // clock ticks (10000/sec)
 

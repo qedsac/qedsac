@@ -150,7 +150,7 @@ void Options::accept()
     Settings::set_hints(hints->isChecked());
     Settings::set_real_time(real_time->isChecked());
     Settings::set_short_tanks(short_tanks->isChecked());
-  // note conversion of bool to int in setting initial orders number:
+    // note conversion of bool to int in setting initial orders number:
     Settings::set_initial_orders(orders[0]->isChecked()
                                     + 2*orders[1]->isChecked());
     Settings::set_open_recent(open_recent->isChecked());
