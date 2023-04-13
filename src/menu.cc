@@ -788,7 +788,7 @@ void Menu::enable_library(bool flag)
 // (ignore built-in files -- i.e., resources)
 void Menu::adjust_recent(const QString& filename)
 {
-    if (filename[0] == ':') { return; }
+    if (not filename.isEmpty() and filename[0] == ':') { return; }
     int file_index = -1;        // assume not already in list
     // find filename in list or first empty position
     for (int i = 0; i < recent_files.size(); i++) {
