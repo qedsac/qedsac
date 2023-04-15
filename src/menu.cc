@@ -547,12 +547,19 @@ Menu::Menu(QWidget *parent)
     line->setFrameShadow(QFrame::Sunken);
     left->addWidget(line);
 
+const int OPTION_FONT_SIZE =
+#if !defined(__APPLE__)
+	 9;		// default size
+#else
+	12;		// Macs seem to need larger font here
+#endif
+
     // options bar
     //    initial orders chooser
     initial = new QComboBox();
     QFont f = initial->font();
-    f.setPointSize(9);          // should we use pixel size instead?
-    initial->setFont(f);        // (point size seems to work best)
+    f.setPointSize(OPTION_FONT_SIZE);  // should we use pixel size instead?
+    initial->setFont(f);               // (point size seems to work best)
     initial->addItem("Initial Orders 1");
     initial->addItem("Initial Orders 2");
     options->addWidget(initial);
