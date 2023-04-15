@@ -303,6 +303,12 @@ Menu::Menu(QWidget *parent)
 
     // construct display here so connections don't need lamdas
     display = new Display();
+
+    QAction *rc = edsac_menu->addAction("&Reset Clock");
+    connect(rc, &QAction::triggered, display, &Display::reset_clock);
+
+    edsac_menu->addSeparator();
+
     items[PRINT_OUTPUT] = edsac_menu->addAction("&Print Edsac Output");
     items[PRINT_OUTPUT]->setEnabled(false);
     connect(items[PRINT_OUTPUT], &QAction::triggered,
@@ -477,8 +483,8 @@ Menu::Menu(QWidget *parent)
                 }
             });
 
-    // "Zeroize Clock" tool
-    tmp = toolbar->addAction(QIcon(QPixmap(":/clock.png")), "Zeroize Clock");
+    // "Reset Clock" tool
+    tmp = toolbar->addAction(QIcon(QPixmap(":/clock.png")), "Reset Clock");
     connect(tmp, &QAction::triggered, display, &Display::reset_clock);
 
     items[DISCARD_OUTPUT_TOOL]
