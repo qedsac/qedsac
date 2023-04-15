@@ -7,6 +7,8 @@ distribution is available at [GitHub](https://github.com/qedsac/qedsac).
 There are only minor differences from the original, mostly cosmetic,
 some due to Qt requirements, others are minor "improvements."
 
+The latest version is 0.8a.
+
 We encourage those interested in (and capable of) producing binary
 distributions (Linux .deb/.rpm, Mac OS X .pkg, etc.) to do so, and make
 them available in public repositories.  We are particularly interested
