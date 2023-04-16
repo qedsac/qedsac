@@ -549,9 +549,9 @@ Menu::Menu(QWidget *parent)
 
 const int OPTION_FONT_SIZE =
 #if !defined(__APPLE__)
-	 9;		// default size
+     9;     // default size
 #else
-	12;		// Macs seem to need larger font here
+    12;     // Macs seem to need larger font here
 #endif
 
     // options bar
