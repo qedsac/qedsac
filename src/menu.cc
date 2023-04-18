@@ -764,7 +764,7 @@ const int OPTION_FONT_SIZE =
     }
     tabs->adjustSize();
     // height of 60 seems to work; how can we compute "correct" value?
-    tabs->setFixedHeight(60);
+    tabs->setFixedSize(QSize(tabs->width(), 60));
 
     // put everything together
     outer->addLayout(left);
