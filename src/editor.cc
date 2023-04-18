@@ -3,12 +3,15 @@
  *              (stuff for opening/editing/saving files)
  *           -- adapted from code editor example in Qt docs
  */
+#include <QApplication>
+#include <QGuiApplication>
 #include <QClipboard>
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QMessageBox>
 #include <QPainter>
 #include <QRegularExpression>
+#include <QScreen>
 #include <QSettings>
 #include <QTextStream>
 
@@ -111,10 +114,25 @@ Edit_Window::Edit_Window(const QString& fname, QWidget *parent)
 
     // set window geometry to default or last known geometry
     if (full_path.isEmpty() or not window_geometry.contains(full_path)) {
+        const int DEFAULT_WIDTH = 320;
+        const int DEFAULT_HEIGHT = 355;
+        const int MARGIN = 20;
+        // menu window geometry
+        QRect mg = menu->frameGeometry();
+        // available screen space
+        QRect ag = QGuiApplication::primaryScreen()->availableGeometry(); 
+        int new_y = mg.y() + mg.height() + MARGIN
+                        + MARGIN * window_stack.size();
+        if (new_y + DEFAULT_HEIGHT > ag.height()) {
+            new_y -= mg.height()
+                + 2 * (mg.height() + MARGIN + MARGIN * window_stack.size());
+            new_y = std::max(new_y, ag.y() +
+                QApplication::style()->pixelMetric(QStyle::PM_TitleBarHeight));
+        }
         window_geometry.insert(full_path,
-                               QRect(20*window_stack.size() + 20,
-                                     200 + 20 * window_stack.size(),
-                                     320, 355));
+                               QRect(mg.x() + MARGIN
+                                        + MARGIN * window_stack.size(),
+                                     new_y, DEFAULT_WIDTH, DEFAULT_HEIGHT));
     }
     setGeometry(window_geometry[full_path]);
 }
