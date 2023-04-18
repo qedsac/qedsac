@@ -105,18 +105,23 @@ void Edsac::dial_digit(unsigned n)
 {   
     if (running or not reset_enabled) { Error::beep(); return; }
 
+    running = true;     // prevent race condition while dialing
     acc[3] += 2 *n;
     acc[3] &= MAX_HIWORD;
     display->update_tube(ACC);
-    play_sound(":/Dial" + QString::number(n % 10) + ".wav");
     
-    QElapsedTimer t;    // QThread::msleep doesn't do the job here.
-    int delay = 1000 + 100 * n;
-    t.start();
-    while (not t.hasExpired(delay)) {
-        QCoreApplication::processEvents(QEventLoop::AllEvents, 1);
+    if (Settings::sound()) {
+        play_sound(":/Dial" + QString::number(n % 10) + ".wav");
+        // wait for sound to finish
+        QElapsedTimer t;    // QThread::msleep doesn't do the job here.
+        int delay = 1000 + 100 * n;
+        t.start();
+        while (not t.hasExpired(delay)) {
+            QCoreApplication::processEvents(QEventLoop::AllEvents, 1);
+        }
     }
 
+    running = false;    // allow reset() to proceed
     reset();
 }
 
