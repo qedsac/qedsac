@@ -448,6 +448,10 @@ Menu::Menu(QWidget *parent)
     QVBoxLayout *left = new QVBoxLayout(),      // left side  (actions/options)
                 *right = new QVBoxLayout();     // right side (subr library)
     QHBoxLayout *options = new QHBoxLayout();   // option choices (left side)
+    outer->setSpacing(0);
+    left->setSpacing(0);
+    right->setSpacing(0);
+    options->setSpacing(0);
 
     // left side
     // tool bar
@@ -577,30 +581,35 @@ const int OPTION_FONT_SIZE =
             });
     }
 
+    options->addStretch();
     bell = new QCheckBox("Stop Bell");
     bell->setFont(f);
     options->addWidget(bell);
     connect(bell, &QCheckBox::stateChanged,
         [this]() { Settings::set_stop_bell(bell->isChecked()); } );
 
+    options->addStretch();
     time = new QCheckBox("Real Time");
     time->setFont(f);
     options->addWidget(time);
     connect(time, &QCheckBox::stateChanged,
         [this]() { Settings::set_real_time(time->isChecked()); } );
 
+    options->addStretch();
     sound = new QCheckBox("Sound");
     sound->setFont(f);
     options->addWidget(sound);
     connect(sound, &QCheckBox::stateChanged,
         [this]() { Settings::set_sound(sound->isChecked()); } );
 
+    options->addStretch();
     hints = new QCheckBox("Hints");
     hints->setFont(f);
     options->addWidget(hints);
     connect(hints, &QCheckBox::stateChanged,
         [this]() { Settings::set_hints(hints->isChecked()); } );
 
+    options->addStretch();
     tanks = new QCheckBox("Short Tanks");
     tanks->setFont(f);
     options->addWidget(tanks);
@@ -628,6 +637,7 @@ const int OPTION_FONT_SIZE =
     s_frame->setLineWidth(3);
     s_frame->setMidLineWidth(1);
     s_frame->setGeometry(status->frameGeometry());
+    left->addStretch();
     left->addWidget(status);
 
     // right side
@@ -686,6 +696,9 @@ const int OPTION_FONT_SIZE =
             // add category tab to "Subroutine Library" panel
             QWidget *curr_tab = new QWidget();
             QHBoxLayout *layout = new QHBoxLayout(curr_tab);
+            layout->setSpacing(2);
+            layout->setMargin(2);
+            layout->setContentsMargins(QMargins(2,2,2,2));
 
             // process items in current category
             line = next_line(subr_catalog);   // "num=" line
@@ -749,9 +762,19 @@ const int OPTION_FONT_SIZE =
             if (*p == default_tab) { tabs->setCurrentWidget(curr_tab); }
         }
     }
+    tabs->adjustSize();
+    // height of 60 seems to work; how can we compute "correct" value?
+    tabs->setFixedHeight(60);
 
     // put everything together
     outer->addLayout(left);
+
+    // separator
+    line = new QFrame();
+    line->setFrameShape(QFrame::VLine);
+    line->setFrameShadow(QFrame::Sunken);
+    outer->addWidget(line);
+
     outer->addLayout(right);
     window->setLayout(outer);
     setCentralWidget(window);
