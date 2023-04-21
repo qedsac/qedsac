@@ -2,6 +2,9 @@
  * clock.cc -- definitions for Clock class
  *             (clock in display window)
  */
+#if defined(_WIN32) or defined(_WIN64)
+    #define _USE_MATH_DEFINES
+#endif
 #include <cmath>
 #include <QPaintEvent>
 #include <QPainter>
