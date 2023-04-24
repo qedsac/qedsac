@@ -1,0 +1,6 @@
+-L c:/Qt/5.15.2/mingw81_32/lib
+-lQt5PrintSupport
+-lQt5Multimedia
+-lQt5Widgets
+-lQt5Gui
+-lQt5Core 

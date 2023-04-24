@@ -1,0 +1,8 @@
+/I .
+/I ..\src
+/I c:\Qt\5.15.2\msvc2019\include
+/I c:\Qt\5.15.2\msvc2019\include\QtGui
+/I c:\Qt\5.15.2\msvc2019\include\QtWidgets
+/I c:\Qt\5.15.2\msvc2019\include\QtCore
+/I c:\Qt\5.15.2\msvc2019\include\QtMultimedia
+/I c:\Qt\5.15.2\msvc2019\include\QtPrintSupport

@@ -1,0 +1,6 @@
+/link/libpath:c:\Qt\5.15.2\msvc2019\lib
+Qt5PrintSupport.lib
+Qt5Multimedia.lib
+Qt5Widgets.lib
+Qt5Gui.lib
+Qt5Core.lib
