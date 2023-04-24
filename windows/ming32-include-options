@@ -1,7 +1,5 @@
--D DATA_DIR=\"/Users/jruch/Documents\"
--D DOC_DIR=\"/Users/jruch/Documents\"
--I ..
--I../src
+-I .
+-I ../src
 -I c:/Qt/5.15.2/mingw81_32/include
 -I c:/Qt/5.15.2/mingw81_32/include/QtGui
 -I c:/Qt/5.15.2/mingw81_32/include/QtWidgets
