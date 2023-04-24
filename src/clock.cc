@@ -2,7 +2,7 @@
  * clock.cc -- definitions for Clock class
  *             (clock in display window)
  */
-#if defined(_WIN32) or defined(_WIN64)
+#ifdef _MSC_VER
     #define _USE_MATH_DEFINES
 #endif
 #include <cmath>
