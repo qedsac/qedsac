@@ -53,4 +53,5 @@ Some sites may provide a `tar` archive named `qedsac-x.y.tar.gz`
 package directory named `qedsac-x.y`.
 
 ## Compiling and Installation
-See the file [`INSTALL.md`](INSTALL.md) for detailed instructions.
+See [`INSTALL.md`](INSTALL.md) or [`INSTALL-Windows.md`](INSTALL-Windows.md) 
+for detailed instructions.

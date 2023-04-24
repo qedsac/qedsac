@@ -42,9 +42,11 @@ $(distdir).tar.gz: $(distdir)
 $(distdir): FORCE
 	mkdir -p $(distdir)/src $(distdir)/src/images $(distdir)/src/icons	\
 		$(distdir)/src/sounds $(distdir)/src/fonts $(distdir)/src/tapes	\
-		$(distdir)/src/doc $(distdir)/linux $(distdir)/macos
+		$(distdir)/src/doc $(distdir)/linux $(distdir)/macos            \
+		$(distdir)/windows 
 	cp $(srcdir)/README.md $(srcdir)/AUTHORS.md $(srcdir)/VERSION $(distdir)
-	cp $(srcdir)/INSTALL.md $(srcdir)/LICENSE $(PGM).desktop.in $(distdir)
+	cp $(srcdir)/INSTALL.md $(srcdir)/INSTALL-Windows.md $(distdir)
+	cp $(srcdir)/LICENSE $(PGM).desktop.in $(distdir)
 	cp $(srcdir)/configure.ac $(distdir)
 	cp $(srcdir)/configure $(distdir)
 	cp $(srcdir)/config.h.in $(distdir)
@@ -64,6 +66,7 @@ $(distdir): FORCE
 	cp $(srcdir)/src/doc/* $(distdir)/src/doc
 	cp -R $(srcdir)/src/data $(distdir)/src
 	cp -R $(srcdir)/macos $(distdir)
+	cp -R $(srcdir)/windows $(distdir)
 
 distcheck: $(distdir).tar.gz
 	gzip -cd $(distdir).tar.gz | tar xvf -
