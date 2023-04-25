@@ -39,15 +39,15 @@ executable, you will need to make similar modifications.
 You will need to copy the contents of the `src\data` and `src\doc`
 directories into your `Documents` folder.  The command
 ```
-xcopy /s ..\src\doc\*.* ..\src\data\*.* %homepath%
+xcopy /s ..\src\doc\*.* ..\src\data\*.* %homepath%\Documents
 ```
 should accomplish this.  If you prefer to put these files elsewhere,
 you'll need to modify the lines in the batch file that set the `%doc%`
 and `%data%` variables appropriately.
 
-Ideally, there would be a Windows-specific `make` file and
-`configure.bat` utility to deal with file dependencies
-(as in the Unix/Linux instructions).  Also ideally, it would be
-possible to automatically create a `setup.exe` installation program.
-These features will have to wait until we can find someone willing
-(and able) to develop them.
+Ideally, there should be a Windows-specific `make` file and
+`configure.bat` utility to deal with file dependencies and
+configuration options (as in the Unix/Linux instructions).  Also
+ideally, it should be possible to automatically create a `setup.exe`
+installation program.  These features will have to wait until we can
+find someone willing (and able) to develop them.
