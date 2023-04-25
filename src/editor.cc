@@ -27,7 +27,7 @@ QClipboard *clipboard;      // initialized in main()
 // display bracketed comments in red
 // (adapted from QSyntaxHighlighter web page)
 void Edit_Window::Comment_Highlighter::highlightBlock(const QString& text)
-{   // should we count brackets to allow nesting?
+{   // should we count brackets to allow nesting?  [original does not]
     QTextCharFormat comment_format;
     comment_format.setForeground(Qt::red);
 
@@ -503,7 +503,7 @@ void Edit_Window::Edit_Area::resizeEvent(QResizeEvent *e)
                                   line_number_digits(), cr.height()));
 }
 
-// determine the Edit_Window that owns this Edit_Area
+// determine which Edit_Window owns this Edit_Area
 Edit_Window *Edit_Window::Edit_Area::parent() const
 {
     return dynamic_cast<Edit_Window *>(parentWidget());

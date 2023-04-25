@@ -448,7 +448,7 @@ void Edsac::collate(ADDR a, bool lflag)
 }
 
 // compute the "control word" value for a shift order
-// [direction must be code('L') or code('R')]
+// (direction must be 'L' or 'R')
 static inline WORD control_word(char direction, ADDR a, bool lflag)
 {
     return WORD(code(direction)) << (ADDR_BITS + FLAG_BITS)
@@ -576,8 +576,7 @@ void Edsac::print_check(ADDR a, bool lflag)
 
 // do nothing
 void Edsac::no_op(ADDR a, bool lflag)
-{
-}
+{}
 
 // roundoff accumulator to 34 bits
 // (i.e., add 2⁻³⁵ to the accumulator)
@@ -635,7 +634,7 @@ void Edsac::mult_op(ADDR a, bool lflag, Op_Spec op)
         if ((x_mcand & 0x1) != 0) {
             // add to accumulator
             add_op[op](x_mplier, acc);
-            //display->update_tube(ACC);
+            //display->update_tube(ACC);  // exec too fast for this
         }
         x_mcand >>= 1;
         shift_left(x_mplier, 4);
