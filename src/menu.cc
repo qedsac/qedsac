@@ -513,6 +513,11 @@ Menu::Menu(QWidget *parent)
     tmp = toolbar->addWidget(new QLabel("Find:"));
     QLineEdit *search_box = new QLineEdit("");
     search_box->setFixedSize(QSize(80, 16));
+	{
+		QFont f = search_box->font();
+		f.setPixelSize(12);
+		search_box->setFont(f);
+	}
     tmp = toolbar->addWidget(search_box);
     tmp = toolbar->addAction(QIcon(QPixmap(":/down.png")), "Next");
     connect(tmp, &QAction::triggered,
