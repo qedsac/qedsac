@@ -515,7 +515,7 @@ Menu::Menu(QWidget *parent)
     search_box->setFixedSize(QSize(80, 16));
 	{
 		QFont f = search_box->font();
-		f.setPixelSize(12);
+		f.setPixelSize(13);
 		search_box->setFont(f);
 	}
     tmp = toolbar->addWidget(search_box);
