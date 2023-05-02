@@ -11,6 +11,7 @@
 
 namespace Error {
 
+    // report internal error
     inline
     QMessageBox::StandardButton internal_error(const QString& msg)
     {   return QMessageBox::critical(nullptr, "Internal Error", msg,
@@ -18,6 +19,7 @@ namespace Error {
             QMessageBox::Abort);
     }
 
+    // report "normal" error
     inline
     QMessageBox::StandardButton error(const QString& msg)
         { return QMessageBox::critical(nullptr, "Error", msg); }

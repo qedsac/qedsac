@@ -42,15 +42,16 @@ const WORD MAX_FLAG = (~(~WORD(0) << FLAG_BITS));   // flag mask
 
 // architecture attributes
 const unsigned NUM_LONG_TANKS = 32;
-const unsigned LONG_TANK_WORDS = 32;
+const unsigned LONG_TANK_WORDS = 32;                // # words in long tank
 const unsigned STORE_DISPLAY_LINES = LONG_TANK_WORDS / 2;
 
-const unsigned TANK_BITS = log2(NUM_LONG_TANKS);
-const WORD TANK_MASK = ~(WORD(~0) << TANK_BITS);
+const unsigned TANK_BITS = log2(NUM_LONG_TANKS);    // # addr bits specifying
+const WORD TANK_MASK = ~(WORD(~0) << TANK_BITS);    // long tank & mask
 
-const unsigned OFFSET_BITS = log2(LONG_TANK_WORDS);
-const WORD OFFSET_MASK = ~(WORD(~0) << OFFSET_BITS);
+const unsigned OFFSET_BITS = log2(LONG_TANK_WORDS); // # addr bits specifying
+const WORD OFFSET_MASK = ~(WORD(~0) << OFFSET_BITS);// word offset & mask
 
+// determine which long tank contains specified address
 inline int tank_num(ADDR a) { return (a >> OFFSET_BITS) & TANK_MASK; }
 
 // useful functions

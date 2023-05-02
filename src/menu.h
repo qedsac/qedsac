@@ -98,6 +98,6 @@ private:
     QStatusBar *status;         // status bar
 };
 
-extern Menu *menu;      // single menu/toolbar window for simulator
+extern Menu *menu;      // single menu/toolbar window
 
 #endif

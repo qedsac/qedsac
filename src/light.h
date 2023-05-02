@@ -1,6 +1,6 @@
 /*
  * light.h -- declarations for Light class
- *            (stop light in display window)
+ *            (for stop light in display window)
  */
 #ifndef LIGHT_H
 #define LIGHT_H

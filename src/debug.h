@@ -14,7 +14,7 @@ namespace Debug {
     inline
     void debug(const QString& msg) { qInfo(msg.toStdString().c_str()); }
 
-    inline  // needed because QString has no "boolalpha" conversion
+    inline  // useful because QString has no "boolalpha" conversion
     QString as_str(bool b) { return b ? "true" : "false"; }
 
 };

@@ -91,6 +91,6 @@ private:
     Light *stop_light;
 };
 
-extern Display *display;
+extern Display *display;    // single display window
 
 #endif

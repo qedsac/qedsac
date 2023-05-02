@@ -99,6 +99,6 @@ private:
     char last_printed = 0;
 };
 
-extern Edsac *edsac;
+extern Edsac *edsac;    // single simulator object
 
 #endif
