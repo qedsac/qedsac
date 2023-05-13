@@ -7,7 +7,7 @@ distribution is available at [GitHub](https://github.com/qedsac/qedsac).
 There are only minor differences from the original, mostly cosmetic,
 some due to Qt requirements, others are minor "improvements."
 
-The latest version (as of 18 April 2023) is 0.8b.
+The latest version (as of 13 May 2023) is 0.9.
 
 We encourage those interested in (and capable of) producing binary
 distributions (Linux .deb/.rpm, Mac OS X .pkg, etc.) to do so, and make
