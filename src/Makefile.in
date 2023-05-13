@@ -108,7 +108,7 @@ resources.cc: $(IMAGES) $(ICONS) $(SOUNDS) $(FONTS)  \
                     $(srcdir)/tapes/catalog.ini
 
 clean:
-	-rm -f $(PGM) *.o >/dev/null 2>&1
+	-rm -f $(PGM) *.o resources.cc >/dev/null 2>&1
 
 install:    all
 	$(INSTALL) -d $(DESTDIR)$(bindir)
