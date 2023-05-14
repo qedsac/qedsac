@@ -1,6 +1,5 @@
 # Build/Install Instructions for Unix/Linux
 
-
 Depending on the download method you used, the `qedsac` project code
 will be under a directory named either `qedsac` (`git` command-line), 
 `qedsac-main` (GitHub zip archive), or `qedsac-x.y` ("tarball"
@@ -13,6 +12,26 @@ necessary libraries and utilities are installed, and it will complain
 if they are missing.  To build `qedsac`, you will need a C++11 compiler
 (`g++` is assumed), the Qt5 Gui, Widgets, Multimedia and PrintSupport
 libraries, the Qt resource compiler (`rcc`), and the `pkgconfig` utility.
+The last is usually installed by default on Linux.
+
+The commands to install the necessary libraries on known Unices are:
+
+- Fedora/RedHat/CentOS
+```
+		sudo dnf install qt5-qtbase-devel qt5-qtmultimedia-devel
+```
+
+- Ubuntu/Debian
+```
+		sudo apt-get installqtbase5-dev qtmultimedia5-dev
+```
+
+- Mac OS X
+```
+		sudo port install qt5
+		sudo port install pkgconfig
+```
+
 
 ## System-wide Installation
 
