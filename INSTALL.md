@@ -11,7 +11,7 @@ Installation," below.  The configuration utility checks that the
 necessary libraries and utilities are installed, and it will complain
 if they are missing.  To build `qedsac`, you will need a C++11 compiler
 (`g++` is assumed), the Qt5 Gui, Widgets, Multimedia and PrintSupport
-libraries, the Qt resource compiler (`rcc`), and the `pkgconfig` utility.
+libraries, the Qt resource compiler (`rcc`), and the `pkgconf` utility.
 The last is usually installed by default on Linux.
 
 The known commands to install the necessary libraries on various Unices are:
