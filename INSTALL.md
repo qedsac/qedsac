@@ -18,18 +18,18 @@ The commands to install the necessary libraries on known Unices are:
 
 - Fedora/RedHat/CentOS
 ```
-		sudo dnf install qt5-qtbase-devel qt5-qtmultimedia-devel
+	sudo dnf install qt5-qtbase-devel qt5-qtmultimedia-devel
 ```
 
 - Ubuntu/Debian
 ```
-		sudo apt-get installqtbase5-dev qtmultimedia5-dev
+	sudo apt-get installqtbase5-dev qtmultimedia5-dev
 ```
 
 - Mac OS X
 ```
-		sudo port install qt5
-		sudo port install pkgconfig
+	sudo port install qt5
+	sudo port install pkgconfig
 ```
 
 
