@@ -14,7 +14,7 @@ if they are missing.  To build `qedsac`, you will need a C++11 compiler
 libraries, the Qt resource compiler (`rcc`), and the `pkgconfig` utility.
 The last is usually installed by default on Linux.
 
-The commands to install the necessary libraries on known Unices are:
+The known commands to install the necessary libraries on various Unices are:
 
 - Fedora/RedHat/CentOS
 ```
