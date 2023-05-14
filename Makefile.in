@@ -86,6 +86,9 @@ distcheck: $(distdir).tar.gz
 Makefile: Makefile.in config.status
 	./config.status $@
 
+config.h: config.h.in config.status
+	./config.status $@
+
 config.status: configure
 	./config.status --recheck
 
