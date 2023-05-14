@@ -23,7 +23,7 @@ The known commands to install the necessary libraries on various Unices are:
 
 - Ubuntu/Debian
 ```
-	sudo apt-get installqtbase5-dev qtmultimedia5-dev
+	sudo apt-get install qtbase5-dev qtmultimedia5-dev
 ```
 
 - Mac OS X
