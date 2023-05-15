@@ -89,6 +89,9 @@ Makefile: Makefile.in config.status
 config.h: config.h.in config.status
 	./config.status $@
 
+linux/qedsac.desktop: qedsac.desktop.in config.status
+	./config.status --recheck
+
 config.status: configure
 	./config.status --recheck
 
