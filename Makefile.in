@@ -30,7 +30,7 @@ all clean check install uninstall $(PGM):
 
 all:	other
 
-other:
+other:	linux/qedsac.desktop
 	@echo "*** any extra stuff needed for make all ***" >/dev/null
 
 dist: $(distdir).tar.gz
