@@ -30,7 +30,7 @@ all clean check install uninstall $(PGM):
 
 all:	other
 
-other:	linux/qedsac.desktop VERSION config.h
+other:	linux/qedsac.desktop config.h
 	@echo "*** extra stuff needed for make all ***" >/dev/null
 
 dist: $(distdir).tar.gz
@@ -92,7 +92,7 @@ config.h: config.h.in config.status
 linux/qedsac.desktop: qedsac.desktop.in config.status
 	./config.status --recheck
 
-VERSION config.status: configure
+config.status: configure
 	./config.status --recheck
 
 FORCE:
