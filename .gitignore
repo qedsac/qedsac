@@ -16,3 +16,5 @@ config.log
 config.status
 configure~
 configure.ac~
+welcome.txt
+testers.txt
