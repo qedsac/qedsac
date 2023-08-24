@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.71])
-AC_INIT([Qt-based EDSAC Simulator],[1.0],[],[qedsac])
+AC_INIT([Qt-based EDSAC Simulator],[0.9x],[],[qedsac])
 : ${CXXFLAGS="-std=c++11 -g -O3"}
 # following line requires config.sub & config.guess files in distro
 AC_CANONICAL_TARGET
