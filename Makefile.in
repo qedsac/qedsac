@@ -30,6 +30,8 @@ all clean check install uninstall $(PGM):
 
 all:	other
 
+install:	all
+
 other:	linux/qedsac.desktop config.h
 	@echo "*** extra stuff needed for make all ***" >/dev/null
 
